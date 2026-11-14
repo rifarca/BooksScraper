@@ -10,7 +10,7 @@ async function bootstrap() {
     .setVersion('0.0.1')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('sanbox', app, documentFactory);
+  SwaggerModule.setup('sandbox', app, documentFactory);
 
   await app.listen(3000);
 }
