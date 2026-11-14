@@ -5,6 +5,10 @@ import { Book } from '../interfaces/book.interface';
 @Injectable()
 export class BooksScraper {
   private readonly logger = new Logger(BooksScraper.name);
+
+  /*
+   Limpia los textos de coidgo ilegible
+  */
   cleanText(input: string): string {
     if (!input) return '';
     return (
@@ -22,6 +26,9 @@ export class BooksScraper {
         .trim()
     );
   }
+  /*
+   Scrapea los libros
+  */
   async scrapeBooks(totalPages = 3): Promise<Book[]> {
     let browser: Browser | undefined;
     const books: Book[] = [];
@@ -36,7 +43,7 @@ export class BooksScraper {
 
       const page: Page = await browser.newPage();
 
-      for (let currentPage = 1; currentPage <= totalPages; currentPage++) {
+      for (let currentPage = 1; currentPage < totalPages; currentPage++) {
         const url =
           currentPage === 1
             ? 'https://books.toscrape.com/'
@@ -53,8 +60,7 @@ export class BooksScraper {
             const link = book.querySelector('h3 a');
             return {
               title: link?.getAttribute('title')?.trim() || '',
-
-              desc: '', // La descripción se llenará después de visitar la página de detalle
+              image: book.querySelector('.image_container img.thumbnail')?.getAttribute('src')?.trim() || '',
               price: book.querySelector('.price_color')?.textContent?.trim() || '',
               availability: book.querySelector('.availability')?.textContent?.trim() || '',
               rating: book.querySelector('.star-rating')?.classList.item(1) || '',
