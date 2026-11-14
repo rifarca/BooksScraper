@@ -12,7 +12,7 @@ async function bootstrap() {
     .addTag('books-scraper')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('doc', app, documentFactory);
+  SwaggerModule.setup('docs', app, documentFactory);
 
   await app.listen(3000);
 }

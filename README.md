@@ -1,3 +1,16 @@
+<!-- TOC -->
+
+- [BooksScraper 📚](#booksscraper-)
+  - [📋 Documentacion](#-documentacion)
+  - [📋 Prerrequisitos](#-prerrequisitos)
+  - [⚙️ Instalación](#-instalación)
+  - [🚀 Ejecución](#-ejecución)
+  - [🔌 Uso](#-uso)
+    - [Parámetros](#parámetros)
+    - [Respuesta](#respuesta)
+
+<!-- /TOC -->
+
 # BooksScraper 📚
 
 API desarrollada en **NestJS** que realiza web scraping sobre [Books to Scrape](https://books.toscrape.com/) utilizando **Puppeteer**.
@@ -7,13 +20,15 @@ API desarrollada en **NestJS** que realiza web scraping sobre [Books to Scrape](
 ## 📋 Documentacion
 
 Asegúrate de tener instalado en tu entorno:
-- [Local] {http://localhost:3000/docs}
+
+- \[Local] {http://localhost:3000/docs}
 
 ---
 
 ## 📋 Prerrequisitos
 
 Asegúrate de tener instalado en tu entorno:
+
 - [Node.js](https://nodejs.org/) (v18 o superior)
 - [npm](https://www.npmjs.com/)
 - [Docker](https://www.docker.com/) *(Opcional, para ejecución en contenedores)*
@@ -25,7 +40,7 @@ Asegúrate de tener instalado en tu entorno:
 Clona el repositorio e instala las dependencias del proyecto:
 
 ```bash
-git clone <url-de-tu-repositorio>
+git clone https://github.com/rifarca/BooksScraper.git
 cd BooksScraper
 npm install
 ```
@@ -36,47 +51,42 @@ npm install
 
 Selecciona el método que prefieras para levantar la aplicación:
 
-<details open>
-  <summary><b>🟢 Ejecutar con npm (Recomendado)</b></summary>
-  <br>
+\<b>🟢 Ejecutar con npm (Recomendado)\</b>
+<br />
 
-  ```bash
-  # Modo desarrollo (con recarga automática)
-  npm run start:dev
+```bash
+# Modo desarrollo (con recarga automática)
+npm run start:dev
 
-  # Modo producción
-  npm run build
-  npm run start:prod
-  ```
-</details>
+# Modo producción
+npm run build
+npm run start:prod
+```
 
-<details>
-  <summary><b>🔴 Ejecutar con Nest CLI</b></summary>
-  <br>
+\<b>🔴 Ejecutar con Nest CLI\</b>
+<br />
 
-  *Nota: Requiere tener instalado `@nestjs/cli` de forma global (`npm i -g @nestjs/cli`).*
-  ```bash
-  # Modo desarrollo
-  nest start --watch
+*Nota: Requiere tener instalado&#x20;*`@nestjs/cli`*&#x20;de forma global (*`npm i -g @nestjs/cli`*).*
 
-  # Modo producción
-  nest build
-  nest start --prod
-  ```
-</details>
+```bash
+# Modo desarrollo
+nest start --watch
 
-<details>
-  <summary><b>🐳 Ejecutar con Docker</b></summary>
-  <br>
+# Modo producción
+nest build
+nest start --prod
+```
 
-  ```bash
-  # 1. Construir la imagen de Docker
-  docker build -t books-scraper .
+\<b>🐳 Ejecutar con Docker\</b>
+<br />
 
-  # 2. Ejecutar el contenedor exponiendo el puerto 3000
-  docker run -p 3000:3000 books-scraper
-  ```
-</details>
+```bash
+# 1. Construir la imagen de Docker
+docker build -t books-scraper .
+
+# 2. Ejecutar el contenedor exponiendo el puerto 3000
+docker run -p 3000:3000 books-scraper
+```
 
 ---
 
@@ -89,10 +99,12 @@ GET http://localhost:3000/books/scrape?pages=3
 ```
 
 ### Parámetros
-| Parámetro | Tipo | Descripción | Requerido |
-| :--- | :--- | :--- | :--- |
-| `pages` | `number` | Cantidad de páginas del catálogo a extraer. | No (por defecto: `1`) |
+
+| Parámetro | Tipo     | Descripción                                 | Requerido             |
+| :-------- | :------- | :------------------------------------------ | :-------------------- |
+| `pages`   | `number` | Cantidad de páginas del catálogo a extraer. | No (por defecto: `1`) |
 
 ### Respuesta
+
 - **API:** Devuelve el listado de libros extraídos en formato `JSON`.
 - **Archivo local:** Guarda automáticamente una copia del resultado en `books.json` en la raíz del proyecto.
