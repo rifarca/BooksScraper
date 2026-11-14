@@ -11,7 +11,12 @@ npm install
 ## Ejecución
 
 ```bash
-# Desarrollo
+
+
+
+
+# Correr en Desarrollo
+
 npm run start:dev
 
 # Producción

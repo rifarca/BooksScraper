@@ -13,6 +13,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BooksController = void 0;
+const openapi = require("@nestjs/swagger");
 const common_1 = require("@nestjs/common");
 const books_service_1 = require("../services/books.service");
 let BooksController = class BooksController {
@@ -27,7 +28,9 @@ let BooksController = class BooksController {
 };
 exports.BooksController = BooksController;
 __decorate([
+    openapi.ApiQuery({ name: "pages", required: false }),
     (0, common_1.Get)('scrape'),
+    openapi.ApiResponse({ status: 200, type: [Object] }),
     __param(0, (0, common_1.Query)('pages')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
