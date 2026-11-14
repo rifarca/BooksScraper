@@ -4,6 +4,13 @@ API desarrollada en **NestJS** que realiza web scraping sobre [Books to Scrape](
 
 ---
 
+## 📋 Documentacion
+
+Asegúrate de tener instalado en tu entorno:
+- [Local] {http://localhost:3000/docs}
+
+---
+
 ## 📋 Prerrequisitos
 
 Asegúrate de tener instalado en tu entorno:
