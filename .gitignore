@@ -1,4 +1,4 @@
 # Dependencias y compilación
-/node_modules
-/dist
-/build
+./node_modules
+./dist
+./build
