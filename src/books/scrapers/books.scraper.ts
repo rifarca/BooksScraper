@@ -58,9 +58,11 @@ export class BooksScraper {
         const booksDataOnPage = await page.evaluate(() => {
           return Array.from(document.querySelectorAll('.product_pod')).map((book) => {
             const link = book.querySelector('h3 a');
+
+            const imageUrl = 'https://books.toscrape.com/';
             return {
               title: link?.getAttribute('title')?.trim() || '',
-              image: book.querySelector('.image_container img.thumbnail')?.getAttribute('src')?.trim() || '',
+              image: imageUrl + book.querySelector('.image_container img.thumbnail')?.getAttribute('src')?.trim() || '',
               price: book.querySelector('.price_color')?.textContent?.trim() || '',
               availability: book.querySelector('.availability')?.textContent?.trim() || '',
               rating: book.querySelector('.star-rating')?.classList.item(1) || '',
