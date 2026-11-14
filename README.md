@@ -63,7 +63,7 @@ npm run build
 npm run start:prod
 ```
 
-\<b>🔴 Ejecutar con Nest CLI\</b>
+<b>🔴 Ejecutar con Nest CLI\</b>
 <br />
 
 *Nota: Requiere tener instalado&#x20;*`@nestjs/cli`*&#x20;de forma global (*`npm i -g @nestjs/cli`*).*
@@ -77,15 +77,13 @@ nest build
 nest start --prod
 ```
 
-\<b>🐳 Ejecutar con Docker\</b>
+<b>🐳 Ejecutar con Docker\</b>
 <br />
 
 ```bash
-# 1. Construir la imagen de Docker
-docker build -t books-scraper .
+# Construir el ontenedor
+docker compose up --build
 
-# 2. Ejecutar el contenedor exponiendo el puerto 3000
-docker run -p 3000:3000 books-scraper
 ```
 
 ---
