@@ -1,7 +1,7 @@
 <!-- TOC -->
 
 - [BooksScraper 📚](#booksscraper-)
-  - [📋 Documentacion](#-documentacion)
+  - [📋 Sanbox](#-sanbox)
   - [📋 Prerrequisitos](#-prerrequisitos)
   - [⚙️ Instalación](#-instalación)
   - [🚀 Ejecución](#-ejecución)
@@ -15,15 +15,7 @@
 
 API desarrollada en **NestJS** que realiza web scraping sobre [Books to Scrape](https://books.toscrape.com/) utilizando **Puppeteer**.
 
----
-
-## 📋 Documentacion
-
-Asegúrate de tener instalado en tu entorno:
-
-- \[Local] {http://localhost:3000/docs}
-
----
+\--
 
 ## 📋 Prerrequisitos
 
@@ -63,7 +55,7 @@ npm run build
 npm run start:prod
 ```
 
-<b>🔴 Ejecutar con Nest CLI\</b>
+\<b>🔴 Ejecutar con Nest CLI\</b>
 <br />
 
 *Nota: Requiere tener instalado&#x20;*`@nestjs/cli`*&#x20;de forma global (*`npm i -g @nestjs/cli`*).*
@@ -77,7 +69,7 @@ nest build
 nest start --prod
 ```
 
-<b>🐳 Ejecutar con Docker\</b>
+\<b>🐳 Ejecutar con Docker\</b>
 <br />
 
 ```bash
@@ -85,6 +77,16 @@ nest start --prod
 docker compose up --build
 
 ```
+
+---
+
+---
+
+## 📋 Sanbox
+
+Asegúrate de tener instalado en tu entorno:
+
+- \[Swagger] {http://localhost:3000/sanbox}
 
 ---
 
