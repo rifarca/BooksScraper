@@ -1,10 +1,14 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import puppeteer, { Browser, Page } from 'puppeteer';
 import { Book } from '../interfaces/book.interface';
 
 @Injectable()
 export class BooksScraper {
   private readonly logger = new Logger(BooksScraper.name);
+  private readonly config = new ConfigService();
+
+
 
   /*
    Limpia los textos de coidgo ilegible
@@ -44,10 +48,11 @@ export class BooksScraper {
       const page: Page = await browser.newPage();
 
       for (let currentPage = 1; currentPage < totalPages; currentPage++) {
+
         const url =
           currentPage === 1
-            ? 'https://books.toscrape.com/'
-            : `https://books.toscrape.com/catalogue/page-${currentPage}.html`;
+            ? this.config.get<string>('APP_SCRAP_URL')
+            : this.config.get<string>('APP_SCRAP_URL') + `/catalogue/page-${currentPage}.html`;
 
         this.logger.log(`Scraping list page: ${url}`);
         await page.goto(url, {

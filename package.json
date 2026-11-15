@@ -1,6 +1,6 @@
 {
   "name": "BooksScraper",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "API en NestJS para scraping de Books to Scrape con Puppeteer",
   "author": "Richard Arce",
   "contributors": [
@@ -11,10 +11,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ietf-tools/author-tools.git"
+    "url": "https://github.com/rifarca/BooksScraper"
   },
-  "private": true,
-  "license": "UNLICENSED",
+  "private": false,
+  "license": "MIT",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^12.0.13",
+    "@nestjs/config": "^12.1.1",
     "@nestjs/core": "^12.0.13",
     "@nestjs/platform-express": "^12.0.13",
     "@nestjs/swagger": "^12.1.2",
