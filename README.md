@@ -43,7 +43,7 @@ npm install
 
 Selecciona el método que prefieras para levantar la aplicación:
 
-\<b>🟢 Ejecutar con npm (Recomendado)\</b>
+🟢 Ejecutar con npm (Recomendado)
 <br />
 
 ```bash
@@ -55,7 +55,7 @@ npm run build
 npm run start:prod
 ```
 
-\<b>🔴 Ejecutar con Nest CLI\</b>
+🔴 Ejecutar con Nest CLI
 <br />
 
 *Nota: Requiere tener instalado&#x20;*`@nestjs/cli`*&#x20;de forma global (*`npm i -g @nestjs/cli`*).*
@@ -69,7 +69,7 @@ nest build
 nest start --prod
 ```
 
-\<b>🐳 Ejecutar con Docker\</b>
+🐳 Ejecutar con Docker
 <br />
 
 ```bash
