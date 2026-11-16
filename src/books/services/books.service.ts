@@ -16,7 +16,6 @@ export class BooksService {
     const books = await this.booksScraper.scrapeBooks(pages);
     const booksFile = this.configService.get<string>("APP_SCRAP_OUTPUT_FILE");
     const filePath = path.resolve(process.cwd() + "/src", booksFile);
-    await fs.rm(filePath);
     await fs.writeFile(filePath, JSON.stringify(books, null, 2), "utf-8");
     return books;
   }
