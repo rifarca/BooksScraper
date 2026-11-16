@@ -36,12 +36,17 @@ export class BooksScraper {
   async scrapeBooks(totalPages = 3): Promise<Book[]> {
     let browser: Browser | undefined;
     const books: Book[] = [];
-   try {
+    try {
       browser = await puppeteer.launch({
         headless: true,
         executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
         args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
       });
+      //esa web solo tiene 50 pages a 20 libros cada uno
+      if (totalPages > 50) {
+        //uff
+        totalPages = 50;
+      }
       const page: Page = await browser.newPage();
       for (let currentPage = 1; currentPage <= totalPages; currentPage++) {
         const url =
@@ -94,11 +99,11 @@ export class BooksScraper {
 
 
               desc = this.cleanText(desc);
-              
+
               upc = await detailPage.evaluate(() => {
                 return (
                   document.querySelector('table.table-striped tr > td')?.textContent?.trim() || ''
-                  
+
                 );
               });
               // Limpiar la descri  pción antes de asignarla
