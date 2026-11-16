@@ -47,7 +47,7 @@ export class BooksScraper {
 
       const page: Page = await browser.newPage();
 
-      for (let currentPage = 1; currentPage < totalPages; currentPage++) {
+      for (let currentPage = 1; currentPage <= totalPages; currentPage++) {
 
         const url =
           currentPage === 1
