@@ -11,7 +11,6 @@ import { ConfigService } from '@nestjs/config';
 export class BooksController {
   constructor(private readonly booksService: BooksService,
     private readonly configService: ConfigService
-
   ) { }
 
   @Get('scrape')

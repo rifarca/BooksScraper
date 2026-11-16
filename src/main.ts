@@ -11,6 +11,7 @@ async function bootstrap() {
     .setTitle(configService.get<string>('APP_NAME') || 'Books Scraper API')
     .setDescription(configService.get<string>('APP_DESCRIPTION'))
     .setVersion(configService.get<string>('APP_VERSION'))
+    .addTag('Books', 'Endpoints para consultar, gestionar y administrar el catálogo de libros')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   if (configService.get<string>('APP_SWAGGER_LANG') == 'es') {
@@ -56,10 +57,8 @@ async function bootstrap() {
       });
     `,
     });
-  } else {
+  } 
 
-
-  }
   await app.listen(port);
 }
 bootstrap();
