@@ -22,7 +22,7 @@ export class BooksController {
   })
   @ApiOperation({
     summary: 'Scrapear y guardar libros',
-    description: 'Inicia el proceso de scraping para extraer un número determinado de páginas de libros y guardarlos en la base de datos.'
+    description: 'Inicia el proceso de scraping para extraer un número determinado de páginas de libros y guardarlos en un archivo json.'
   })
   @ApiQuery({
     name: 'pages',
