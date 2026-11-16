@@ -36,19 +36,14 @@ export class BooksScraper {
   async scrapeBooks(totalPages = 3): Promise<Book[]> {
     let browser: Browser | undefined;
     const books: Book[] = [];
-
-    try {
+   try {
       browser = await puppeteer.launch({
         headless: true,
         executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
         args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
-
       });
-
       const page: Page = await browser.newPage();
-
       for (let currentPage = 1; currentPage <= totalPages; currentPage++) {
-
         const url =
           currentPage === 1
             ? this.config.get<string>('APP_SCRAP_URL')

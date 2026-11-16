@@ -1,11 +1,18 @@
-import { BadRequestException, Controller, Get, Query } from '@nestjs/common';
+import { BadRequestException, Controller, Get, NotFoundException, Query, Res, StreamableFile } from '@nestjs/common';
 import { BooksService } from '../services/books.service';
 import { Book } from '../interfaces/book.interface';
-import { ApiOperation, ApiResponse, ApiQuery, ApiTags, ApiHeader, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse, ApiQuery, ApiTags, ApiHeader, ApiUnauthorizedResponse, ApiNotFoundResponse, ApiOkResponse, ApiProduces } from '@nestjs/swagger';
+import { existsSync, createReadStream } from 'fs';
+import { join } from 'path';
+import type { Response } from 'express';
+import { ConfigService } from '@nestjs/config';
 
 @Controller('books')
 export class BooksController {
-  constructor(private readonly booksService: BooksService) {}
+  constructor(private readonly booksService: BooksService,
+    private readonly configService: ConfigService
+
+  ) { }
 
   @Get('scrape')
   @ApiHeader({
@@ -65,7 +72,7 @@ export class BooksController {
   })
   async scrapeBooks(@Query('pages') pages?: string): Promise<Book[]> {
 
-    let validPages = 3;
+    let validPages = this.configService.get<number>('APP_SCRAP_PAGES');
 
     if (pages !== undefined) {
       const parsed = Number(pages);
@@ -80,6 +87,69 @@ export class BooksController {
 
     return await this.booksService.scrapeAndSaveBooks(validPages);
   }
+
+
+  @Get('download')
+  @ApiHeader({
+    name: 'x-api-token',
+    description: 'Token secreto de acceso a la API',
+    required: true,
+    example: 'mi-token-secreto-123',
+  })
+  @ApiOperation({
+    summary: 'Descargar archivo books.json',
+    description: 'Inicia el proceso de descarga del archivo JSON generado tras el scraping.'
+  })
+  // 1. Indica el tipo de contenido que devuelve el endpoint
+  @ApiProduces('application/json')
+  // 2. Configura el formato binario para activar el enlace de descarga en Swagger UI
+  @ApiOkResponse({
+    description: 'Archivo books.json descargado correctamente.',
+    schema: {
+      format: 'json',
+    },
+  })
+  // 3. Documenta el error 404 cuando el archivo aún no existe
+  @ApiNotFoundResponse({
+    description: 'No encontrado. El archivo books.json aún no ha sido generado.',
+    schema: {
+      example: {
+        statusCode: 404,
+        message: 'El archivo books.json no existe todavía.',
+        error: 'Not Found',
+      },
+    },
+  })
+  // 4. Documenta el error 401 al igual que en tu otro endpoint
+  @ApiUnauthorizedResponse({
+    description: 'No autorizado. El token de API es inválido o no fue proveído.',
+    schema: {
+      example: {
+        statusCode: 401,
+        message: 'Token de API inválido o ausente',
+        error: 'Unauthorized',
+      },
+    },
+  })
+  downloadBooks(@Res({ passthrough: true }) res: Response): StreamableFile {
+    // Apunta directamente a la raíz del proyecto donde se genera el archivo
+    const filePath = join(process.cwd() + '/src', this.configService.get<string>('APP_SCRAP_OUTPUT_FILE'));
+
+    if (!existsSync(filePath)) {
+      throw new NotFoundException('El archivo books.json no existe todavía.');
+    }
+
+    const fileStream = createReadStream(filePath);
+
+    res.set({
+      'Content-Type': 'application/json; charset=utf-8',
+      // 'attachment' fuerza la descarga directa en el navegador
+      'Content-Disposition': 'attachment; filename="books-' + Date.now().toString() + '.json"',
+    });
+
+    return new StreamableFile(fileStream);
+  }
+
 }
 
 
