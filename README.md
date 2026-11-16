@@ -109,7 +109,7 @@ Una vez iniciado el servidor, abre un navegador en la url y puerto preconfigurad
 
 ej <https://localhost:3553> y te llevara al sanbox
 
-## 1. Scrapear
+## 2. Scrapear
 
 Una vez iniciado el servidor, realiza una petición `GET` al siguiente endpoint:
 
@@ -148,7 +148,7 @@ curl -X 'GET' \
 
 ```
 
-## 2. Descargar books.json
+## 3. Descargar books.json
 
 Una vez iniciado el servidor, realiza una petición `GET` al siguiente endpoint:
 
