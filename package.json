@@ -1,6 +1,6 @@
 {
   "name": "BooksScraper",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "API en NestJS para scraping de Books to Scrape con Puppeteer",
   "author": "Richard Arce",
   "contributors": [
