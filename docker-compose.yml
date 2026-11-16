@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
       args:
         - PORT=${APP_PORT}
-        - BASE_URL=${APP_BASE_URL}
+        - BASE_URL=${APP_URL}
         - DEFAULT_PAG. ES=${APP_SCRAP_PAGES}
         - OUTPUT_FILE=${APP_SCRAP_OUTPUT_FILE}
         - PUPPETEER_HEADLESS=${PUPPETEER_HEADLESS}
